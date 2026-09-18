@@ -226,3 +226,4 @@ cache/
 *.gpkg
 australia-mesh-blocks-raw/
 australia-destination-zones-raw/
+census-raw/
