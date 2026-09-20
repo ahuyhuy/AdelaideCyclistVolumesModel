@@ -26,5 +26,10 @@ Last resort: could manually create a *smaller calibration table* using segment d
 
 __Super Tuesday!__
 
-- KML to xlsx and parse the total attribute for each coordinate
+- KML to csv and parse the total attribute for each coordinate
+- Using https://mygeodata.cloud to convert to csv
 - Do for as many years as possible for regression training data
+
+__Google__
+
+- Look into later
