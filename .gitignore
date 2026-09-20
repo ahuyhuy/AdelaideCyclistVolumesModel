@@ -217,13 +217,11 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Large geospatial source data — not tracked in git
+# Large source data — not tracked in git
 cache/
 *.shp
 *.shx
 *.dbf
 *.prj
 *.gpkg
-australia-mesh-blocks-raw/
-australia-destination-zones-raw/
-census-raw/
+all-data/

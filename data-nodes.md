@@ -13,11 +13,18 @@ __CBD Practice Model:__
 
 __Census / Gov Data__
 
-- [ ] Population (mesh block populations)
-- [ ] Density? (mesh block population / mesh block area)
-- [ ] 
+- Population (mesh block populations)
+- Density? (mesh block population / mesh block area)
+- Explore table builder for stuff
+- Explore data.sa.gov.au
 
 __Strava__
 
 Just try stuff hopefully something will work
 Last resort: could manually create a *smaller calibration table* using segment data.
+
+
+__Super Tuesday!__
+
+- KML to xlsx and parse the total attribute for each coordinate
+- Do for as many years as possible for regression training data
