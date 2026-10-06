@@ -9,8 +9,6 @@ __CBD Practice Model:__
 
 `tables-formatted/POW-occupation-DZN` gives the count of each occupation type for each destination zone. The destination zone of each data point is that person's place of work.
 
-# Future sources
-
 __Census / Gov Data__
 
 - Population (mesh block populations)
@@ -33,3 +31,6 @@ __Super Tuesday!__
 __Google__
 
 - Look into later
+
+# Commuter prediction notes
+How can I replicate home-work-home trips best? Place of work is by DZN, and there's no link between place of work and home so how do I correctly predict the in-between nodes well? I can create a __UR to POW table__ at resolution SA1 * DZN by getting the SA1 resolution census data for usual residence and getting POW DZN counts per SA1 code. A cell in this table means n people who live in this SA1 work at this DZN, so n people must travel from that SA1 to that DZN. Could translate this into a coordinate table and then use later on.

@@ -7,3 +7,6 @@ Start up the kernel using:
 ```
 conda activate CyclistVolumeModelling
 ```
+
+
+__Structure so more count data can be added later to improve the model!__
