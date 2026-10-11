@@ -34,3 +34,37 @@ __Google__
 
 # Commuter prediction notes
 How can I replicate home-work-home trips best? Place of work is by DZN, and there's no link between place of work and home so how do I correctly predict the in-between nodes well? I can create a __UR to POW table__ at resolution SA1 * DZN by getting the SA1 resolution census data for usual residence and getting POW DZN counts per SA1 code. A cell in this table means n people who live in this SA1 work at this DZN, so n people must travel from that SA1 to that DZN. Could translate this into a coordinate table and then use later on.
+
+
+__MB Table Builder Rows:__ MB by Greater Capital City Statistical Areas (UR) -> SA -> Greater Adelaide MB
+
+__MB Col Sets:__ (may not use all)
+- HEAP Level of Highest Educational Attainment
+- EETP Engagement in Employment, Education and Training
+- Hours Worked (ranges)
+- ~~Full time worker~~
+- Method of travel to work
+
+__DZN Table Builder Rows:__ Greater Capital City Statistical Areas (POW) -> SA -> Greater Adelaide DZN
+
+__DZN Col Sets:__
+- HEAP Level of Highest Educational Attainment
+- EETP Engagement in Employment, Education and Training
+- Method of Travel to work
+
+__Infrastructure Data:__
+```py
+infrastructure_tags = {
+    "highway": ["cycleway"],
+    "cycleway": True,
+    "cycleway:left": True,
+    "cycleway:right": True,
+    "cycleway:both": True,
+    "bicycle": True,
+    # Can add many more
+}
+```
+- Distance from CBD (distance from inner polygon?)
+
+__Count Data:__
+- Super Tuesday 2019-2026 but may only use 2026 cos others are outdated
