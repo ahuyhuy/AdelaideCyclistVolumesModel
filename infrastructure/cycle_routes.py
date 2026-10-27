@@ -9,50 +9,63 @@ from typing import Set
 
 
 # Reliable Overpass endpoint (kumi.systems works well)
-OVERPASS_ENDPOINT = "https://overpass.kumi.systems/api/interpreter"
+#OVERPASS_ENDPOINT = "https://overpass.kumi.systems/api/interpreter"
+#OVERPASS_ENDPOINT = "https://overpass-api.de/api/interpreter"
+OVERPASS_ENDPOINT = "https://overpass.private.coffee/api/interpreter"
 
 
 def get_cycle_route_way_ids(bbox: tuple, timeout: int = 180, max_retries: int = 2) -> Set[str]:
     """
-    Get OSM way IDs that are part of bicycle route relations within a bounding box.
-    Retries on server load errors (503, 429, etc.).
-    
-    Args:
-        bbox: Tuple of (minx, miny, maxx, maxy) - note: minx=west, miny=south
-        timeout: Query timeout in seconds
-        max_retries: Number of retry attempts (default 2 = 1 retry after initial)
-        
-    Returns:
-        Set of OSM way IDs (as strings) that belong to bicycle routes
+    Get OSM way IDs for bicycle routes by splitting bbox into 4 sub-queries.
+    More reliable for large areas (Adelaide metro).
     """
+    import overpy
+    import time
+    from typing import Set
+    
     minx, miny, maxx, maxy = bbox
+    midx = (minx + maxx) / 2
+    midy = (miny + maxy) / 2
     
-    # Overpass QL query: (south, west, north, east) = (miny, minx, maxy, maxx)
-    query = f"""
-    [out:json][timeout:{timeout}];
-    (
-      relation["route"="bicycle"]({miny},{minx},{maxy},{maxx});
-    );
-    way(r);
-    out ids;
-    """
+    # 4 sub-bboxes: SW, SE, NW, NE
+    sub_bboxes = [
+        (minx, miny, midx, midy),   # SW
+        (midx, miny, maxx, midy),   # SE
+        (minx, midy, midx, maxy),   # NW
+        (midx, midy, maxx, maxy),   # NE
+    ]
     
+    all_way_ids = set()
     api = overpy.Overpass(url=OVERPASS_ENDPOINT)
     
-    for attempt in range(max_retries):
-        try:
-            result = api.query(query)
-            return {str(way.id) for way in result.ways}
-        except Exception as e:
-            if attempt < max_retries - 1:
-                wait = 2 ** attempt  # 1s, 2s, 4s...
-                print(f"Error: {type(e).__name__}: {e} — retrying in {wait}s...")
-                time.sleep(wait)
-            else:
-                print(f"Failed after {max_retries} attempts: {type(e).__name__}: {e}")
-                raise
+    for i, (sminx, sminy, smaxx, smaxy) in enumerate(sub_bboxes):
+        query = f"""
+        [out:json][timeout:{timeout}];
+        (
+          relation["route"="bicycle"]({sminy},{sminx},{smaxy},{smaxx});
+        );
+        way(r);
+        out ids;
+        """
+        
+        for attempt in range(max_retries):
+            try:
+                result = api.query(query)
+                way_ids = {str(way.id) for way in result.ways}
+                all_way_ids.update(way_ids)
+                print(f"  Sub-query {i+1}/4: found {len(way_ids)} ways")
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    wait = 2 ** attempt
+                    print(f"  Sub-query {i+1}/4 error: {type(e).__name__}: {e} — retrying in {wait}s...")
+                    time.sleep(wait)
+                else:
+                    print(f"  Sub-query {i+1}/4 failed after {max_retries} attempts: {type(e).__name__}: {e}")
+                    # Continue to next sub-query instead of raising
     
-    return set()
+    print(f"Total ways found across 4 sub-queries: {len(all_way_ids)}")
+    return all_way_ids
 
 
 def add_cycle_route_attribute(edges, cycle_way_ids: Set[str]):
