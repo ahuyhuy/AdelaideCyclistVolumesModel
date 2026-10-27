@@ -225,3 +225,6 @@ cache/
 *.prj
 *.gpkg
 all-data/
+
+# Bicycling infrastructure classification using OpenStreetMap, Monash University
+bicycling-infrastructure-classification/

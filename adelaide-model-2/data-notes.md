@@ -18,14 +18,11 @@ So the first attempt was bad but thats expected. Going to look into what factors
 
 # Improving infrastructure classifcation
 
-Want to do a series of dummy vars for different types of roads according to OSM, such as existing INF_CW which is OSM highway:cycleway. Will take:
- - highway:trunk (Greenhill, Dequetteville, Portrush, N/S Motorway)
- - highway:primary (Fullarton, Payneham, Donald Bradman)
- - highway:secondary (Grenfell, Wakefield, Magill, Prospect)
- - highway:tertiary
- - highway:residential
- - cycleway:lane (left and right, not separate)
- - route=bicycle (the edge may also be part of a cycling route relation in OSM, eg. Norwood - Magill Bikeway, see `infrastucture/` on how these are being retrieved)
+Sustainable Mobility and Safety Research Group, Monash University. (2023). Bicycling infrastructure classification using OpenStreetMap. https://github.com/SustainableMobility/bicycling-infrastructure-classification
+
+This project is a most complete classification system for biycle infrastructure with 21 different classes. For this model, these classes will be directly ported over and used as binary dummy variables, but after assessing correlations, the final model may use less, or aggregate the classes. Their repo is located in `bicycling-infrastructure-classification/`
+
+The last bit of bike infrastructure they don't have is cycle routes. These include the Norwood-Magill Bikeway, etc. These are retrieved using the function from `infrastructure/cycle_routes.py`.
 
 # New Vars to try:
 
@@ -33,8 +30,5 @@ Want to do a series of dummy vars for different types of roads according to OSM,
 - Distance to nearest large DZN: DNL_DZN
 - Age demographics, try males 30-40 and females 15-25 (best from Dadshova's): M_30_40, F_15_25
 - Households with a THI of > 3500, place of enumeration, MB: H_3500
-- OSM highway=trunk: INF_LRG_RD
-- OSM highway={primary, secondary}: INF_MED_RD
-- OSM highway={tertiary, residential}: INF_SML_RD
-- OSM cycleway:{left, right}=lane, not separate, just a normal bike lane: INF_CL
 - OSM route=bicycle: INF_CR
+- 
