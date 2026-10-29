@@ -8,7 +8,6 @@ So the first attempt was bad but thats expected. Going to look into what factors
     - ```all-data/census-formatted/greater-adelaide/MTW-Bicycle-POW-DZN.csv``` [Bicycle]
 - POW_FE: N people who work in this DZN and are fullly engaged in employment or study
     - ```all-data/census-formatted/greater-adelaide/EETP-POW-DZN.csv``` [Fully Engaged]
-- INF_CW: 1 if the edge the count point lies on is a cycleway, else 0
 
 # Looking at DZN more closely
 
@@ -31,4 +30,18 @@ The last bit of bike infrastructure they don't have is cycle routes. These inclu
 - Age demographics, try males 30-40 and females 15-25 (best from Dadshova's): M_30_40, F_15_25
 - Households with a THI of > 3500, place of enumeration, MB: H_3500
 - OSM route=bicycle: INF_CR
-- 
+
+__Monash Bicycle Infrastructure Classification__ - Binary dummy variables for every type of bicycle infrastructure
+
+- MBI_BP: Dedicated bike path, Shared bike path
+- MBI_PP: Pedestrian path/street with cycling allowed
+- MBI_PL: Protected bike lane
+- MBI_BL: Buffered bike lane (kerb-side), Buffered bike lane (road-side), Buffered bike lane (both sides)
+- MBI_PTL: Painted bike lane, Painted bike lane (single-side)
+- MBI_Ad: Advisory bike lane, Advisory bike lane (single-side), Peak hour advisory bike lane, Peak hour advisory bike lane (single-side)
+- MBI_PkPt: Peak hour painted bike lane, Peak hour painted bike lane (single-side)
+- MBI_Sh: Sharrow
+- MBI_SZ: Shared zone
+- MBI_Bus: Bus lane with cycling allowed
+- MBI_Mx: Mixed traffic
+- MBI_No: Bicyclists dismount, Pedestrian path/street with cycling not allowed
