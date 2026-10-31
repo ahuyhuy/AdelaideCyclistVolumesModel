@@ -2,6 +2,10 @@
 
 description here pls
 
+# Setup guide
+
+
+
 # Directory guide
 
 `all-data/`: Contains census data, geo data for census data geographical regions (mesh blocks, destination zones), and cyclist count data
