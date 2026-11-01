@@ -17,3 +17,7 @@ description here pls
 `investigation/`: Earlier notebooks, test scripts, and models
 
 `scripts/`: Shared code used in graph generation
+
+# AI Usage
+
+__NVIDIA Nemotron 3 Ultra (free)__ was the AI model used to assist with coding in python and managing the python environment. It was run __Deepseek Harness__ (see https://www.deepseek.com/en/harness/) - a locally run code harness that enables file read/write and maintains work context across sessions and models. Deepseek Harness was connected to the chosen model via __OpenRouter__, a service allowing users to connect harnesses such as copilot, claude code, cursor, and deepseek harness, to any available LLM model. This setup was primarily used for coding and technical support, not for design decisions or documentation.
