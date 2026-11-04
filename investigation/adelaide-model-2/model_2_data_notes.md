@@ -50,3 +50,5 @@ __Monash Bicycle Infrastructure Classification__ - Binary dummy variables for ev
 # Parklands Mesh Blocks Issue
 
 Many of the Super Tuesday count locations are in the parklands surrounding the CBD. Due to the mapping of Adelaide's Census Mesh Blocks (see below), many of the Mesh Blocks in the key count locations are devoid of any population data. Observing `model_2_X_y.csv` there are many blank spots where all mesh block-related columns have 0's.![Adelaide CBD Mesh Blocks](<parklands mesh blocks.png>)
+
+This issue kinda just ruined the regression can't lie, can't see whats going on with that.

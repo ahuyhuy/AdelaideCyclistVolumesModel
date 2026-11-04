@@ -1,0 +1,2 @@
+- POW_CTW change to proportion of total DZN population: POW_CTW is now the proportion of people who work in this DZN that cycle to work, rather than number.
+- 
