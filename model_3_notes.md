@@ -1,4 +1,4 @@
-# Segmented Regression For Cyclist Volume in the Adelaide CBD
+# Exploring Segmented Regression For Cyclist Volume in the Adelaide CBD
 
 `investigation/adelaide-model-2/model_2_X_y.csv` shows the regression table for model 2, which used plain negative binomial regression for its prediction model. An outstanding issue was the parklands count locations, because the mesh blocks they fall in have no people in them, just parklands.
 
